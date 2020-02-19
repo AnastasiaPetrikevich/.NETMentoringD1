@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/01. Introduction to .NET/.vs/Introduction to .NET
+/01. Introduction to .NET/Introduction to .NET/CoreConsoleUI/bin/Debug/netcoreapp2.0
+/01. Introduction to .NET/Introduction to .NET/CoreConsoleUI/obj/Debug/netcoreapp2.0
+/01. Introduction to .NET/Introduction to .NET/CoreConsoleUI/obj
+/01. Introduction to .NET/Introduction to .NET/.vs/Introduction to .NET
+/01. Introduction to .NET/Introduction to .NET/FrameworkWindowsFormsUI/bin/Debug
+/01. Introduction to .NET/Introduction to .NET/FrameworkWindowsFormsUI/obj/Debug
+/01. Introduction to .NET/XamarinUI/.vs/XamarinUI/v15
+/01. Introduction to .NET/XamarinUI/.vs/XamarinUI/DesignTimeBuild
+/01. Introduction to .NET/XamarinUI/XamarinUI/XamarinUI/bin/Debug/netstandard2.0
+/01. Introduction to .NET/XamarinUI/XamarinUI/XamarinUI/obj
