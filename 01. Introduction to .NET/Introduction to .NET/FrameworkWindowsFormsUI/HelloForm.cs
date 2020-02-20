@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HelloMessageLogic;
 
 namespace FrameworkWindowsFormsUI
 {
@@ -20,11 +21,8 @@ namespace FrameworkWindowsFormsUI
         private void okButton_Click(object sender, EventArgs e)
         {
             string name = this.nameTextBox.Text;
-
-            if (string.IsNullOrWhiteSpace(name))
-                name = "anonim";  
-            
-            MessageBox.Show($"Hello, {name}!");
+                                  
+            MessageBox.Show(HelloMessageService.HelloMessage(DateTime.Now, name));
         }
     }
 }

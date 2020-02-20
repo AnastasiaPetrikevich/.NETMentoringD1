@@ -7,4 +7,10 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.561731" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HelloMessageLogic">
+      <HintPath>..\..\..\Introduction to .NET\HelloMessageLogic\bin\Debug\netstandard2.0\HelloMessageLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using HelloMessageLogic;
 
 namespace CoreConsoleUI
 {
@@ -15,10 +16,9 @@ namespace CoreConsoleUI
             var config = builder.Build();
 
             string name = config["Name"];
-            if(string.IsNullOrWhiteSpace(name))
-                name="anonim";
 
-            Console.WriteLine($"Hello, {name}!");
+            Console.WriteLine(HelloMessageService.HelloMessage(DateTime.Now, name));
+            Console.ReadKey(true);
         }
     }
 }

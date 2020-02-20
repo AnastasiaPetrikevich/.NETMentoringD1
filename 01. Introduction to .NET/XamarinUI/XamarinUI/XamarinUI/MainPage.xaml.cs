@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using HelloMessageLogic;
 
 namespace XamarinUI
 {
@@ -17,9 +18,8 @@ namespace XamarinUI
         private void OnButtonClicked(object sender, EventArgs e)
         {
             string name = this.nameEntry.Text;
-            if (string.IsNullOrWhiteSpace(name))
-                name = "anonim";
-            this.helloMessageLabel.Text = $"Hello, {name}!";
+            
+            this.helloMessageLabel.Text = HelloMessageService.HelloMessage(DateTime.Now, name);
         }
     }
 }

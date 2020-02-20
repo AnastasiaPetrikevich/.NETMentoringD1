@@ -78,5 +78,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelloMessageLogic\HelloMessageLogic.csproj">
+      <Project>{3fd62fdd-0a98-4dff-9d08-aac428e04c09}</Project>
+      <Name>HelloMessageLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
