@@ -9,6 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HelloMessageLogic\HelloMessageLogic.csproj" />
+    <ProjectReference Include="..\..\HelloMessageLogic\HelloMessageLogic.csproj" />
   </ItemGroup>
 </Project>
