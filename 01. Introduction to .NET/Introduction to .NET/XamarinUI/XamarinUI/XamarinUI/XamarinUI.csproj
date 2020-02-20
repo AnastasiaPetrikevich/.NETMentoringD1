@@ -9,8 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="HelloMessageLogic">
-      <HintPath>..\..\..\Introduction to .NET\HelloMessageLogic\bin\Debug\netstandard2.0\HelloMessageLogic.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\HelloMessageLogic\HelloMessageLogic.csproj" />
   </ItemGroup>
 </Project>
