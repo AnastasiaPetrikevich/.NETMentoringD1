@@ -1,1 +1,0 @@
-C:\Users\Anastasia\source\repos\.NET Mentoring D1\01. Introduction to .NET\XamarinUI\XamarinUI\XamarinUI.UWP\XamarinUI.UWP.csproj;x86
