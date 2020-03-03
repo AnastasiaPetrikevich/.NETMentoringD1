@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemVisitorLogic", "FileSystemVisitorLogic\FileSystemVisitorLogic.csproj", "{83009256-E441-4100-8C8C-F475ABB6DBD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemVisitorConsoleUI", "FileSystemVisitorConsoleUI\FileSystemVisitorConsoleUI.csproj", "{1F702D8B-1320-4772-AAC8-5368BAF242B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83009256-E441-4100-8C8C-F475ABB6DBD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83009256-E441-4100-8C8C-F475ABB6DBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83009256-E441-4100-8C8C-F475ABB6DBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83009256-E441-4100-8C8C-F475ABB6DBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F702D8B-1320-4772-AAC8-5368BAF242B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F702D8B-1320-4772-AAC8-5368BAF242B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F702D8B-1320-4772-AAC8-5368BAF242B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F702D8B-1320-4772-AAC8-5368BAF242B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4635751C-4290-491C-A071-EC643C7AB7E8}
+	EndGlobalSection
+EndGlobal
