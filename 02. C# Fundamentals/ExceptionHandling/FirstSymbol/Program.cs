@@ -10,10 +10,10 @@ namespace FirstSymbol
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Please, enter string: ");
-
-			while (Console.ReadKey(true).Key != ConsoleKey.Escape)
+			while (true)
 			{
+				Console.WriteLine("Press Ctrl+C if you want close.");
+				Console.WriteLine("Please, enter string: ");
 				string sourceString = Console.ReadLine();
 
 				if (string.IsNullOrWhiteSpace(sourceString))
@@ -22,10 +22,8 @@ namespace FirstSymbol
 					continue;
 				}
 				
-				Console.WriteLine($"First character: '{sourceString[0]}'.");
-				
+				Console.WriteLine($"First character: '{sourceString.First()}'.");
 			}
-
 		}
 	}
 }
