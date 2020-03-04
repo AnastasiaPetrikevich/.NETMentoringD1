@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ISearchService.cs" />
+    <Compile Include="Interfaces\IVisitorService.cs" />
     <Compile Include="Models\FileSystemVisitorEventArgs.cs" />
     <Compile Include="Models\SearchStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileSystemVisitor.cs" />
-    <Compile Include="Services\SearchService.cs" />
+    <Compile Include="Services\VisitorService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

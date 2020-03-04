@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,69 @@ namespace FileSystemVisitorConsoleUI
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Please, enter path:");
-			var searchPath = Console.ReadLine();
+			//Console.WriteLine("Please, enter path:");
+			//string searchPath = Console.ReadLine();
+			string searchPath = @"D:\.NETMentoringD1";
 
-			var visitor = new FileSystemVisitor(new SearchService(), (path) => path.Contains(".png"));
-			visitor.OnDirectoryFinded += (s, e) => Console.WriteLine($"Directory: {e.Path}");
+			#region All files and directories
 
-			visitor.OnFileFinded += (s, e) => Console.WriteLine($"File: {e.Path}");
-			visitor.OnFilteredFileFinded += (s, e) => e.Status = SearchStatus.Exclude;
+			Console.WriteLine("All files and directories");
+			var visitor = new FileSystemVisitor(new VisitorService());
+			visitor.OnStart += (s, e) => Console.WriteLine("Search started...");
+			visitor.OnFinish += (s, e) => Console.WriteLine("Search fineshed.");
+			visitor.OnDirectoryFinded += (s, e) => Console.WriteLine($"Directory: {e.Path.FullName}");
+			visitor.OnFileFinded += (s, e) => Console.WriteLine($"File: {e.Path.FullName}");
 
-			Console.WriteLine("Results:");
-			visitor.Search($@"{searchPath}");
+			Console.WriteLine("Results 1:");
+
+			foreach (FileSystemInfo entry in visitor.Search(searchPath))
+			{
+			}
+
+			#endregion
+
+
+			#region Exclude files without filter
+
+			Console.WriteLine("Exclude files without filter");
+			visitor = new FileSystemVisitor(new VisitorService());
+			visitor.OnStart += (s, e) => Console.WriteLine("Search started...");
+			visitor.OnFinish += (s, e) => Console.WriteLine("Search fineshed.");
+			visitor.OnFileFinded += (s, e) =>
+			{
+				if (e.Path.Name.Contains("csp"))
+				{
+					e.Status = SearchStatus.Exclude;
+				}
+				else
+				{
+					Console.WriteLine($"File: {e.Path.FullName}");
+				}
+			};
+
+			Console.WriteLine("Results 2:");
+
+			foreach (FileSystemInfo entry in visitor.Search(searchPath))
+			{
+			}
+
+			#endregion
+
+			#region Filtered files
+
+			Console.WriteLine("Filtered files");
+			visitor = new FileSystemVisitor(new VisitorService(), (path) => path.Name.Contains(".csproj"));
+			visitor.OnStart += (s, e) => Console.WriteLine("Search started...");
+			visitor.OnFinish += (s, e) => Console.WriteLine("Search fineshed.");
+			visitor.OnFilteredFileFinded += (s, e) => Console.WriteLine($"Fitered file: {e.Path.FullName}");
+
+			Console.WriteLine("Results 3:");
+
+			foreach (FileSystemInfo entry in visitor.Search(searchPath))
+			{
+			}
+
+			#endregion
 
 			Console.ReadKey();
 		}

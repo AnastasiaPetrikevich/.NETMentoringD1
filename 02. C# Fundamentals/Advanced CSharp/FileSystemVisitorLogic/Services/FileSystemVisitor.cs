@@ -10,8 +10,8 @@ namespace FileSystemVisitorLogic.Services
 {
 	public class FileSystemVisitor
 	{
-		private readonly ISearchService searchService;
-		private readonly Predicate<string> searchFilter;
+		private readonly IVisitorService _visitorService;
+		private readonly Predicate<FileSystemInfo> searchFilter;
 
 		public event EventHandler<EventArgs> OnStart;
 		public event EventHandler<EventArgs> OnFinish;
@@ -20,38 +20,48 @@ namespace FileSystemVisitorLogic.Services
 		public event EventHandler<FileSystemVisitorEventArgs> OnFilteredFileFinded;
 		public event EventHandler<FileSystemVisitorEventArgs> OnFilteredDirectoryFinded;
 
-		public FileSystemVisitor(ISearchService searchService)
+		public FileSystemVisitor(IVisitorService visitorService)
 		{
-			this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
+			this._visitorService = visitorService ?? throw new ArgumentNullException(nameof(visitorService));
 		}
 
-		public FileSystemVisitor(ISearchService searchService, Predicate<string> searchFilter)
+		public FileSystemVisitor(IVisitorService visitorService, Predicate<FileSystemInfo> searchFilter)
 		{
-			this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
+			this._visitorService = visitorService ?? throw new ArgumentNullException(nameof(visitorService));
 			this.searchFilter = searchFilter;
 		}
 
-		public void Search(string path)
+		public IEnumerable<FileSystemInfo> Search(string sourcePath)
 		{
-			if (path == null)
+			if (string.IsNullOrWhiteSpace(sourcePath))
 			{
-				throw new ArgumentNullException(nameof(path));
+				throw new ArgumentNullException(nameof(sourcePath));
 			}
 
-			if (!searchService.IsDirectoryExists(path))
+			DirectoryInfo path = new DirectoryInfo(sourcePath);
+
+			if (!_visitorService.IsDirectoryExists(path))
 			{
 				throw new ArgumentException($"This directory path: {path} doesn't exist");
 			}
 
 			OnStart?.Invoke(this, new EventArgs());
-			SearchFiles(path);
-			SearchChildDirectories(path);
+
+			foreach (var file in SearchFiles(path))
+				yield return file;
+
+			foreach (var directory in SearchChildDirectories(path))
+				yield return directory;
+
+			//var allFiles = SearchFiles(path).ToList();
+			//allFiles.AddRange(SearchChildDirectories(path));
+			
 			OnFinish?.Invoke(this, new EventArgs());
 		}
 
-		private void SearchChildDirectories(string path)
+		private IEnumerable<FileSystemInfo> SearchChildDirectories(DirectoryInfo path)
 		{
-			var directories = searchService.SearchDirectories(path);
+			var directories = _visitorService.SearchDirectories(path);
 
 			foreach (var directory in directories)
 			{
@@ -61,26 +71,33 @@ namespace FileSystemVisitorLogic.Services
 					OnFilteredDirectoryFinded?.Invoke(this, filterArgs);
 
 					if (filterArgs.Status == SearchStatus.Stopped)
-						break;
+						yield break;
 
 					if (filterArgs.Status == SearchStatus.Exclude)
-						continue;
+						yield return directory;
 				}
 
 				var findArgs = new FileSystemVisitorEventArgs(directory);
 				OnDirectoryFinded?.Invoke(this, findArgs);
 
-				SearchFiles(directory);
-				SearchChildDirectories(directory);
-
 				if (findArgs.Status == SearchStatus.Stopped)
-					break;
+					yield break;
+
+				if (findArgs.Status == SearchStatus.Exclude)
+					yield return directory;
+
+				foreach (var file in SearchFiles(directory as DirectoryInfo))
+					yield return file;
+
+				foreach (var childDirectory in SearchChildDirectories(directory as DirectoryInfo))
+					yield return childDirectory;
+				
 			}
 		}
 
-		private void SearchFiles(string path)
+		private IEnumerable<FileSystemInfo> SearchFiles(DirectoryInfo path)
 		{
-			var files = searchService.SearchFiles(path);
+			var files = _visitorService.SearchFiles(path);
 
 			foreach (var file in files)
 			{
@@ -90,17 +107,20 @@ namespace FileSystemVisitorLogic.Services
 					OnFilteredFileFinded?.Invoke(this, filterArgs);
 
 					if (filterArgs.Status == SearchStatus.Stopped)
-						break;
-				
+						yield break;
+
 					if (filterArgs.Status == SearchStatus.Exclude)
-						continue;
+						yield return file;
 				}
 
 				var findArgs = new FileSystemVisitorEventArgs(file);
 				OnFileFinded?.Invoke(this, findArgs);
 
 				if (findArgs.Status == SearchStatus.Stopped)
-					break;
+					yield break;
+
+				if (findArgs.Status == SearchStatus.Exclude)
+					yield return file;
 			}
 		}
 	}
