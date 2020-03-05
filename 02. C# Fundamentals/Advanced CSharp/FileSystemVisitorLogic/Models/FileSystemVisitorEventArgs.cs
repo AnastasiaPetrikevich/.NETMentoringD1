@@ -11,11 +11,15 @@ namespace FileSystemVisitorLogic.Models
 	{
 		public SearchStatus Status { get; set; }
 
-		public FileSystemInfo Path { get; }
-		
-		public FileSystemVisitorEventArgs(FileSystemInfo path)
+		public FileSystemInfo FileSystemInfo { get; }
+		public string Message { get; }
+
+		public FileSystemVisitorEventArgs(FileSystemInfo fileSystemInfo, string Message = null)
 		{
-			Path = path;
+			FileSystemInfo = fileSystemInfo;
+			this.Message = Message;
 		}
+
+
 	}
 }

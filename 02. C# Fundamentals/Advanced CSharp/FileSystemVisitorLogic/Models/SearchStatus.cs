@@ -8,8 +8,8 @@ namespace FileSystemVisitorLogic.Models
 {
 	public enum SearchStatus
 	{
-		Active,
-		Stopped,
+		Continue,
+		Stop,
 		Exclude
 	}
 }
