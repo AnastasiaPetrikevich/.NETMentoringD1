@@ -77,7 +77,8 @@ namespace FileSystemWatcherLogic.Services
 				}
 				catch (IOException)
 				{
-					Thread.Sleep(2000);
+					logger.Log(ResourceString.FileLocked);
+					break;
 				}
 			} while (fileAcess);
 		}

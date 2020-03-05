@@ -126,6 +126,9 @@
   <data name="FileFound" xml:space="preserve">
     <value>New file {0} found. Creation date {1}.</value>
   </data>
+  <data name="FileLocked" xml:space="preserve">
+    <value>File {0} locked.</value>
+  </data>
   <data name="FileMoved" xml:space="preserve">
     <value>File {0} moved to directory {1}.</value>
   </data>

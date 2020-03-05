@@ -126,6 +126,9 @@
   <data name="FileFound" xml:space="preserve">
     <value>Файл {0} найден. Дата создания {1}.</value>
   </data>
+  <data name="FileLoked" xml:space="preserve">
+    <value>Файл {0} заблокирован.</value>
+  </data>
   <data name="FileMoved" xml:space="preserve">
     <value>Файл {0} перемещен в директорию {1}.</value>
   </data>

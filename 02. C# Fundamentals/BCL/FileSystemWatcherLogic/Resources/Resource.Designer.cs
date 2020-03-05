@@ -88,6 +88,15 @@ namespace FileSystemWatcherLogic.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File {0} locked..
+        /// </summary>
+        internal static string FileLocked {
+            get {
+                return ResourceManager.GetString("FileLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File {0} moved to directory {1}..
         /// </summary>
         internal static string FileMoved {
