@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemWatcherLogic", "FileSystemWatcherLogic\FileSystemWatcherLogic.csproj", "{D56D342B-E047-439F-A5C5-8B39EEC6F9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemWatcherUI", "FileSystemWatcherUI\FileSystemWatcherUI.csproj", "{30782EE8-A2EF-4514-996C-5964E793D6D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D56D342B-E047-439F-A5C5-8B39EEC6F9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D56D342B-E047-439F-A5C5-8B39EEC6F9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D56D342B-E047-439F-A5C5-8B39EEC6F9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D56D342B-E047-439F-A5C5-8B39EEC6F9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30782EE8-A2EF-4514-996C-5964E793D6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30782EE8-A2EF-4514-996C-5964E793D6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30782EE8-A2EF-4514-996C-5964E793D6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30782EE8-A2EF-4514-996C-5964E793D6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A6174AC-C7F4-4CDB-BDE5-E2CC85F720D2}
+	EndGlobalSection
+EndGlobal
