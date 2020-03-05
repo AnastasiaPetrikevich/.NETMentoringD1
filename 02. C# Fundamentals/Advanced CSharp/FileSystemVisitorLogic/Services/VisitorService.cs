@@ -10,7 +10,14 @@ namespace FileSystemVisitorLogic.Services
 {
 	public class VisitorService : IVisitorService
 	{
-		public IEnumerable<FileSystemInfo> SearchFiles(DirectoryInfo filePath)
+        public bool IsStopOnException { get; set; }
+
+        public VisitorService(bool isStop = false)
+        {
+            IsStopOnException = isStop;
+        }
+
+        public IEnumerable<FileSystemInfo> SearchFiles(DirectoryInfo filePath)
 		{
 			IEnumerable<FileInfo> files = null;
 			try
@@ -19,8 +26,11 @@ namespace FileSystemVisitorLogic.Services
 			}
 			catch (UnauthorizedAccessException)
 			{
-				Console.WriteLine($"You don't have access to the {filePath.FullName}.");
-			}
+                if (IsStopOnException)
+                {
+                    throw new UnauthorizedAccessException($"You don't have access to the {filePath.FullName}.");
+                }
+            }
 
 			if (files != null)
 			{
@@ -40,7 +50,10 @@ namespace FileSystemVisitorLogic.Services
 			}
 			catch (UnauthorizedAccessException)
 			{
-				Console.WriteLine($"You don't have access to the {directoryPath.FullName}.");
+                if (IsStopOnException)
+                {
+                    throw new UnauthorizedAccessException($"You don't have access to the {directoryPath.FullName}.");
+                }				
 			}
 
 			if (directories != null)
@@ -52,7 +65,6 @@ namespace FileSystemVisitorLogic.Services
 			}
 		}
 
-		public bool IsDirectoryExists(DirectoryInfo path) => path.Exists;
-
+		public bool IsDirectoryExists(DirectoryInfo path) => path.Exists;               
 	}
 }

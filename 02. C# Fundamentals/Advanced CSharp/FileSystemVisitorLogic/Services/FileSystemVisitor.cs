@@ -52,9 +52,6 @@ namespace FileSystemVisitorLogic.Services
 
 			foreach (var directory in SearchChildDirectories(path))
 				yield return directory;
-
-			//var allFiles = SearchFiles(path).ToList();
-			//allFiles.AddRange(SearchChildDirectories(path));
 			
 			OnFinish?.Invoke(this, new EventArgs());
 		}
@@ -73,7 +70,7 @@ namespace FileSystemVisitorLogic.Services
 					if (filterArgs.Status == SearchStatus.Stopped)
 						yield break;
 
-					if (filterArgs.Status == SearchStatus.Exclude)
+					if (filterArgs.Status == SearchStatus.Active)
 						yield return directory;
 				}
 
@@ -83,7 +80,7 @@ namespace FileSystemVisitorLogic.Services
 				if (findArgs.Status == SearchStatus.Stopped)
 					yield break;
 
-				if (findArgs.Status == SearchStatus.Exclude)
+				if (findArgs.Status == SearchStatus.Active)
 					yield return directory;
 
 				foreach (var file in SearchFiles(directory as DirectoryInfo))
@@ -109,7 +106,7 @@ namespace FileSystemVisitorLogic.Services
 					if (filterArgs.Status == SearchStatus.Stopped)
 						yield break;
 
-					if (filterArgs.Status == SearchStatus.Exclude)
+					if (filterArgs.Status == SearchStatus.Active)
 						yield return file;
 				}
 
@@ -119,7 +116,7 @@ namespace FileSystemVisitorLogic.Services
 				if (findArgs.Status == SearchStatus.Stopped)
 					yield break;
 
-				if (findArgs.Status == SearchStatus.Exclude)
+				if (findArgs.Status == SearchStatus.Active)
 					yield return file;
 			}
 		}

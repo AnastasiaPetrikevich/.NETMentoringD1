@@ -9,7 +9,8 @@ namespace FileSystemVisitorLogic.Models
 {
 	public interface IVisitorService
 	{
-		IEnumerable<FileSystemInfo> SearchDirectories(DirectoryInfo path);
+        bool IsStopOnException { get; set; }
+        IEnumerable<FileSystemInfo> SearchDirectories(DirectoryInfo path);
 		IEnumerable<FileSystemInfo> SearchFiles(DirectoryInfo path);
 		bool IsDirectoryExists(DirectoryInfo path);
 	}
