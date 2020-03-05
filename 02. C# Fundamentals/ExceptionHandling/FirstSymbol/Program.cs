@@ -10,9 +10,9 @@ namespace FirstSymbol
 	{
 		static void Main(string[] args)
 		{
+			Console.WriteLine("Press Ctrl+C if you want close.");
 			while (true)
 			{
-				Console.WriteLine("Press Ctrl+C if you want close.");
 				Console.WriteLine("Please, enter string: ");
 				string sourceString = Console.ReadLine();
 
