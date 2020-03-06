@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{30782EE8-A2EF-4514-996C-5964E793D6D5}</ProjectGuid>
+    <ProjectGuid>{2F1ED7ED-C135-4F07-A011-247D536ACAC9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FileSystemWatcherUI</RootNamespace>
-    <AssemblyName>FileSystemWatcherUI</AssemblyName>
+    <RootNamespace>FileSystemWatcher.UI</RootNamespace>
+    <AssemblyName>FileSystemWatcher.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,12 +48,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileSystemWatcherLogic\FileSystemWatcherLogic.csproj">
-      <Project>{D56D342B-E047-439F-A5C5-8B39EEC6F9A7}</Project>
-      <Name>FileSystemWatcherLogic</Name>
+    <ProjectReference Include="..\FileSystemWatcher.Logic\FileSystemWatcher.Logic.csproj">
+      <Project>{9747a03e-43c3-4ec2-9388-83c8de710327}</Project>
+      <Name>FileSystemWatcher.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

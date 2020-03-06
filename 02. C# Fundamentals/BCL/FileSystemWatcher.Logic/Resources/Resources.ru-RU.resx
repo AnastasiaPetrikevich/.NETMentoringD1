@@ -120,13 +120,13 @@
   <data name="ConfigurationNotFound" xml:space="preserve">
     <value>Конфигурационная секция не найдена.</value>
   </data>
-  <data name="CultureInfo" xml:space="preserve">
+  <data name="CutureInfo" xml:space="preserve">
     <value>Текущая культура: ru-RU</value>
   </data>
   <data name="FileFound" xml:space="preserve">
     <value>Файл {0} найден. Дата создания {1}.</value>
   </data>
-  <data name="FileLoked" xml:space="preserve">
+  <data name="FileLocked" xml:space="preserve">
     <value>Файл {0} заблокирован.</value>
   </data>
   <data name="FileMoved" xml:space="preserve">

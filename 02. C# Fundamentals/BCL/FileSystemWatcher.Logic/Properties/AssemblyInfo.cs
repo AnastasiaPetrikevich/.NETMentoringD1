@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FileSystemWatcherLogic")]
+[assembly: AssemblyTitle("FileSystemWatcher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("FileSystemWatcherLogic")]
-[assembly: AssemblyCopyright("Copyright © EPAM Systems 2020")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("FileSystemWatcher")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d56d342b-e047-439f-a5c5-8b39eec6f9a7")]
+[assembly: Guid("9747a03e-43c3-4ec2-9388-83c8de710327")]
 
 // Version information for an assembly consists of the following four values:
 //
