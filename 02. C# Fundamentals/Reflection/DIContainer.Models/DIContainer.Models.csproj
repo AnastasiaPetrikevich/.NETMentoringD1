@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{140FD330-A151-442E-BA39-491AE936C259}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>DIContainer.UI</RootNamespace>
-    <AssemblyName>DIContainer.UI</AssemblyName>
+    <ProjectGuid>{D5A38BD8-0864-4E4A-8351-20B944013BF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DIContainer.Models</RootNamespace>
+    <AssemblyName>DIContainer.Models</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,17 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CustomerBLL.cs" />
+    <Compile Include="CustomerDAL.cs" />
+    <Compile Include="ICustomerDAL.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DIContainer.Models\DIContainer.Models.csproj">
-      <Project>{d5a38bd8-0864-4e4a-8351-20b944013bf8}</Project>
-      <Name>DIContainer.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DIContainer\DIContainer.csproj">
       <Project>{bae61eaf-6844-4328-810e-eec28e5b6aed}</Project>
       <Name>DIContainer</Name>

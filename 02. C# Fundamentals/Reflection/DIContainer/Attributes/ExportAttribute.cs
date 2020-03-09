@@ -16,6 +16,6 @@ namespace DIContainer.Attributes
 			this.BaseType = baseType;
 		}
 
-		public Type BaseType { get; private set; }
+		public Type BaseType { get;}
 	}
 }

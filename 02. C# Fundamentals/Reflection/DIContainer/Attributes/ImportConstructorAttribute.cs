@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DIContainer.UI.TestData
+namespace DIContainer.Attributes
 {
-	public interface ICustomerDAL
+	[AttributeUsage(AttributeTargets.Class)]
+	public class ImportConstructorAttribute : Attribute
 	{
 	}
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Attributes\ExportAttribute.cs" />
     <Compile Include="Attributes\ImportAttribute.cs" />
+    <Compile Include="Attributes\ImportConstructorAttribute.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

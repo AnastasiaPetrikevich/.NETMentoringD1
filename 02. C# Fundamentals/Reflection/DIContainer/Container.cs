@@ -14,34 +14,58 @@ namespace DIContainer
 
 		public void AddType(Type type) => AddType(type, type);
 
-		public void AddType(Type type, Type baseType) => this.types[baseType] = type;
+		public void AddType(Type key, Type value)
+		{
+			if(!types.ContainsKey(key))
+				types.Add(key, value);
+		} 
 
 		public void AddAssembly(Assembly assembly)
 		{
-			var types = assembly.GetExportedTypes();
+			var loadedTypes = assembly.GetExportedTypes()
+				.Where(type => IsTypeHasExportAttribute(type)
+				               || IsTypeHasImportsAttributesProperties(type)
+				               || IsTypeHasImportConstructorAttribute(type))
+				.ToList();
 
-			foreach (var type in types)
+			foreach (var type in loadedTypes)
 			{
-				var importAttr = type.GetCustomAttribute<ImportAttribute>();
+				AddAttributesTypes(type);
+			}
+		}
 
-				if (importAttr != null)
+		private bool IsTypeHasExportAttribute(Type type)
+		{
+			return type.GetCustomAttribute(typeof(ExportAttribute)) != null;
+		}
+
+		private bool IsTypeHasImportConstructorAttribute(Type type)
+		{
+			return type.GetCustomAttribute(typeof(ImportConstructorAttribute)) != null;
+		}
+
+		private bool IsTypeHasImportsAttributesProperties(Type type)
+		{
+			return type.GetProperties().Any(property => property.GetCustomAttribute(typeof(ImportAttribute)) != null);
+		}
+		
+		private void AddAttributesTypes(Type type)
+		{
+			if (IsTypeHasExportAttribute(type))
+			{
+				var exportAttr = (ExportAttribute) type.GetCustomAttribute(typeof(ExportAttribute));
+				if (exportAttr.BaseType != null)
+				{
+					this.AddType(type, exportAttr.BaseType);
+				}
+				else
 				{
 					this.AddType(type);
 				}
-
-				var exportAttr = type.GetCustomAttribute<ExportAttribute>();
-
-				if (exportAttr != null)
-				{
-					if (exportAttr.BaseType != null)
-					{
-						this.AddType(type, exportAttr.BaseType);
-					}
-					else
-					{
-						this.AddType(type);
-					}
-				}
+			}
+			else
+			{
+				this.AddType(type);
 			}
 		}
 
@@ -51,9 +75,9 @@ namespace DIContainer
 
 		private object CreateInstanceAndResolveDependencies(Type type)
 		{
-			if (!types.ContainsKey(type))
+			if (types.ContainsKey(type))
 			{
-				throw new ArgumentException($"This type^ {type} is not in types collection");
+				throw new ArgumentException($"This type {type} is not in types collection");
 			}
 
 			var instanceType = types[type];
