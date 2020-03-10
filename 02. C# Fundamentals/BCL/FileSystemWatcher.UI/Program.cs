@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using FileSystemWatcher.Configuration;
 using FileSystemWatcher.Interfaces;
 using FileSystemWatcher.Models;
@@ -21,11 +22,7 @@ namespace FileSystemWatcher.UI
 			ILogger logger = new Logger();
 			var configuration = ConfigurationManager.GetSection("fileSystemSection") as FileSystemWatcherSection;
 
-			if (configuration == null)
-			{
-				logger.Log(ResourcesString.ConfigurationNotFound);
-				return;
-			}
+			ValidateConfiguration(configuration, logger);
 
 			var directories = new List<string>(configuration.Directories.Count);
 			var destinations = new List<DestinationElement>();
@@ -43,6 +40,14 @@ namespace FileSystemWatcher.UI
 			watcher.FileCreated += OnCreated;
 
 			Console.ReadKey();
+		}
+
+		private static void ValidateConfiguration(FileSystemWatcherSection configuration, ILogger logger)
+		{
+			if (configuration == null)
+			{
+				logger.Log(ResourcesString.ConfigurationNotFound);
+			}
 		}
 
 		private static void OnCreated(object sender, FileCreatedEventArgs<FileInfo> args)
