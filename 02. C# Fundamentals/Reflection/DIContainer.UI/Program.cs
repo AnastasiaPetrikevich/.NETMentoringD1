@@ -23,7 +23,8 @@ namespace DIContainer.UI
 		private static void DemoWithTypeAddingFromAssembly()
 		{
 			var container = new Container();
-			container.AddAssembly(Assembly.LoadFrom(@"D:\.NETMentoringD1\02. C# Fundamentals\Reflection\DIContainer.Models\bin\Debug\DIContainer.Models.dll"));
+			container.AddAssembly(Assembly.Load(Assembly.GetExecutingAssembly().GetReferencedAssemblies()
+				.SingleOrDefault(a => a.Name == "DIContainer.Models").FullName));
 			WriteOutputWithCasting(container);
 			WriteOutputWithGeneric(container);
 		}
