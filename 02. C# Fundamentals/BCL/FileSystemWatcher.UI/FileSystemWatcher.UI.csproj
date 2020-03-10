@@ -44,6 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\DestinationElement.cs" />
+    <Compile Include="Configuration\DestinationElementCollection.cs" />
+    <Compile Include="Configuration\DirectoryElement.cs" />
+    <Compile Include="Configuration\DirectoryElementCollection.cs" />
+    <Compile Include="Configuration\FileSystemWatcherSection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

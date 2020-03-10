@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace FileSystemWatcher.Configuration
+namespace FileSystemWatcher.UI.Configuration
 {
     public class DirectoryElementCollection : ConfigurationElementCollection
     {

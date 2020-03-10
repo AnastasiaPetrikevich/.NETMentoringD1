@@ -4,11 +4,10 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using FileSystemWatcher.Configuration;
 using FileSystemWatcher.Interfaces;
 using FileSystemWatcher.Models;
 using FileSystemWatcher.Services;
+using FileSystemWatcher.UI.Configuration;
 using ResourcesString = FileSystemWatcher.Resources.Resources;
 
 namespace FileSystemWatcher.UI
@@ -25,11 +24,17 @@ namespace FileSystemWatcher.UI
 			ValidateConfiguration(configuration, logger);
 
 			var directories = new List<string>(configuration.Directories.Count);
-			var destinations = new List<DestinationElement>();
+			var destinations = new List<Destination>();
 			
 			configuration.Directories.Cast<DirectoryElement>().ToList().ForEach(d => directories.Add(d.DirectoryPath));
-			configuration.Destinations.Cast<DestinationElement>().ToList().ForEach(d => destinations.Add(d));
-			
+			configuration.Destinations.Cast<DestinationElement>().ToList().ForEach(d => destinations.Add(new Destination
+			{
+				SearchTemplate = d.SearchTemplate,
+				DestinationDirectory = d.DestinationDirectory,
+				IsDateRequired = d.IsDateRequired,
+				IsNumberRequired = d.IsNumberRequired
+			}));
+
 			CultureInfo.DefaultThreadCurrentCulture = configuration.Culture;
 			CultureInfo.DefaultThreadCurrentUICulture = configuration.Culture;
 

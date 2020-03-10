@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Globalization;
 
-namespace FileSystemWatcher.Configuration
+namespace FileSystemWatcher.UI.Configuration
 {
     public class FileSystemWatcherSection : ConfigurationSection
     {

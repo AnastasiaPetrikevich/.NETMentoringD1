@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using FileSystemWatcher.Configuration;
 using FileSystemWatcher.Interfaces;
 using FileSystemWatcher.Models;
 using ResourcesString = FileSystemWatcher.Resources.Resources;
@@ -15,14 +14,14 @@ namespace FileSystemWatcher.Services
     public class FileSystemWatcher
     {
         private readonly ILogger logger;
-        private readonly List<DestinationElement> destinations;
+        private readonly List<Destination> destinations;
         private readonly string defaultDirectory;
 
 	    private readonly List<System.IO.FileSystemWatcher> fileSystemWatchers;
 		public event EventHandler<FileCreatedEventArgs<FileInfo>> FileCreated;
 
 
-		public FileSystemWatcher(IEnumerable<string> directories, List<DestinationElement> destinations, string defaultDirectory, ILogger logger)
+		public FileSystemWatcher(IEnumerable<string> directories, List<Destination> destinations, string defaultDirectory, ILogger logger)
         {
             this.destinations = destinations;
             this.defaultDirectory = defaultDirectory;
@@ -86,7 +85,7 @@ namespace FileSystemWatcher.Services
 				}
 		    } while (fileAccess);
 	    }
-		private string CreateDestinationPath(FileInfo file, DestinationElement destination, int count)
+		private string CreateDestinationPath(FileInfo file, Destination destination, int count)
         {
             string extension = Path.GetExtension(file.Name);
             string filename = Path.GetFileNameWithoutExtension(file.Name);
