@@ -12,8 +12,8 @@ namespace FileSystemWatcher.Configuration
         [ConfigurationProperty("directories")]
         public DirectoryElementCollection Directories => (DirectoryElementCollection)this["directories"];
 
-        [ConfigurationCollection(typeof(DestinationElement), AddItemName = "destination")]
-        [ConfigurationProperty("destinations")]
-        public DestinationElementCollection Destinations => (DestinationElementCollection)this["destinations"];
+        [ConfigurationCollection(typeof(DestinationElement), AddItemName = "rule")]
+        [ConfigurationProperty("rules")]
+        public DestinationElementCollection Destinations => (DestinationElementCollection)this["rules"];
     }
 }

@@ -53,7 +53,6 @@
     <Compile Include="Configuration\DestinationElement.cs" />
     <Compile Include="Configuration\DestinationElementCollection.cs" />
     <Compile Include="Services\FileSystemWatcher.cs" />
-    <Compile Include="Services\FileSystemWatcherService.cs" />
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using FileSystemWatcher.Configuration;
 using FileSystemWatcher.Interfaces;
+using FileSystemWatcher.Models;
 using ResourcesString = FileSystemWatcher.Resources.Resources;
 
 namespace FileSystemWatcher.Services
@@ -16,12 +18,18 @@ namespace FileSystemWatcher.Services
         private readonly List<DestinationElement> destinations;
         private readonly string defaultDirectory;
 
-        public FileSystemWatcher(List<DestinationElement> destinations, string defaultDirectory, ILogger logger)
+	    private readonly List<System.IO.FileSystemWatcher> fileSystemWatchers;
+		public event EventHandler<FileCreatedEventArgs<FileInfo>> FileCreated;
+
+
+		public FileSystemWatcher(IEnumerable<string> directories, List<DestinationElement> destinations, string defaultDirectory, ILogger logger)
         {
             this.destinations = destinations;
             this.defaultDirectory = defaultDirectory;
             this.logger = logger;
-        }
+
+	        this.fileSystemWatchers = directories.Select(CreateWatcher).ToList();
+		}
 
         public void MoveItem(FileInfo file)
         {
@@ -100,6 +108,34 @@ namespace FileSystemWatcher.Services
 
             return destinationPath.Append(extension).ToString();
         }
-      
-    }
+
+		private System.IO.FileSystemWatcher CreateWatcher(string directory)
+	    {
+		    if (string.IsNullOrEmpty(directory))
+		    {
+			    throw new ArgumentNullException($"Directory {nameof(directory)} is null or empty.");
+		    }
+
+		    var fileSystemWatcher = new System.IO.FileSystemWatcher(directory)
+		    {
+			    NotifyFilter = NotifyFilters.FileName,
+			    EnableRaisingEvents = true
+		    };
+
+		    fileSystemWatcher.Created += (s, e) =>
+		    {
+			    logger.Log(string.Format(ResourcesString.FileFound, e.Name, File.GetCreationTime(e.FullPath)));
+			    OnCreated(new FileInfo(e.FullPath));
+		    };
+
+		    return fileSystemWatcher;
+	    }
+
+	    private void OnCreated(FileInfo file)
+	    {
+		    FileCreated?.Invoke(this, new FileCreatedEventArgs<FileInfo> { CreatedItem = file });
+	    }
+
+
+	}
 }

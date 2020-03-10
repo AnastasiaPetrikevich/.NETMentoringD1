@@ -1,15 +1,16 @@
-﻿using FileSystemWatcher.Configuration;
-using FileSystemWatcher.Interfaces;
-using FileSystemWatcher.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using FileSystemWatcher.Configuration;
+using FileSystemWatcher.Interfaces;
+using FileSystemWatcher.Models;
 using FileSystemWatcher.Services;
 using ResourcesString = FileSystemWatcher.Resources.Resources;
 
-namespace FileSystemWatcher
+namespace FileSystemWatcher.UI
 {
 	class Program
 	{
@@ -28,26 +29,18 @@ namespace FileSystemWatcher
 
 			var directories = new List<string>(configuration.Directories.Count);
 			var destinations = new List<DestinationElement>();
-
-			foreach (DirectoryElement directory in configuration.Directories)
-			{
-				directories.Add(directory.DirectoryPath);
-			}
-
-			foreach (DestinationElement destination in configuration.Destinations)
-			{
-				destinations.Add(destination);
-			}
-
+			
+			configuration.Directories.Cast<DirectoryElement>().ToList().ForEach(d => directories.Add(d.DirectoryPath));
+			configuration.Destinations.Cast<DestinationElement>().ToList().ForEach(d => destinations.Add(d));
+			
 			CultureInfo.DefaultThreadCurrentCulture = configuration.Culture;
 			CultureInfo.DefaultThreadCurrentUICulture = configuration.Culture;
 
 			logger.Log(ResourcesString.CultureInfo);
 
-			watcher = new Services.FileSystemWatcher(destinations, configuration.Destinations.DefaultDirectory, logger);
-			var service = new FileSystemWatcherService(directories, logger);
+			watcher = new Services.FileSystemWatcher(directories, destinations, configuration.Destinations.DefaultDirectory, logger);
 
-			service.FileCreated += OnCreated;
+			watcher.FileCreated += OnCreated;
 
 			Console.ReadKey();
 		}
