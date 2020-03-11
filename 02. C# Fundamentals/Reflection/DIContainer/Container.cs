@@ -14,18 +14,18 @@ namespace DIContainer
 
 		public void AddType(Type type) => AddType(type, type);
 
-		public void AddType(Type key, Type value)
+		public void AddType(Type type, Type baseType)
 		{
-			if(!types.ContainsKey(key))
-				types.Add(key, value);
+			if(!types.ContainsKey(baseType))
+				types.Add(baseType, type);
 		} 
 
 		public void AddAssembly(Assembly assembly)
 		{
 			var loadedTypes = assembly.GetExportedTypes()
 				.Where(type => IsTypeHasExportAttribute(type)
-				               || IsTypeHasImportsAttributesProperties(type)
-				               || IsTypeHasImportConstructorAttribute(type))
+							   || IsTypeHasImportsAttributesProperties(type)
+							   || IsTypeHasImportConstructorAttribute(type))
 				.ToList();
 
 			foreach (var type in loadedTypes)
@@ -67,6 +67,7 @@ namespace DIContainer
 			{
 				this.AddType(type);
 			}
+			
 		}
 
 		public object CreateInstance(Type type) => this.CreateInstanceAndResolveDependencies(type);
@@ -75,7 +76,7 @@ namespace DIContainer
 
 		private object CreateInstanceAndResolveDependencies(Type type)
 		{
-			if (types.ContainsKey(type))
+			if (!types.ContainsKey(type))
 			{
 				throw new ArgumentException($"This type {type} is not in types collection");
 			}
