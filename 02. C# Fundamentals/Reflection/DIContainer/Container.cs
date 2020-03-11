@@ -34,6 +34,10 @@ namespace DIContainer
 			}
 		}
 
+		public object CreateInstance(Type type) => this.CreateInstanceAndResolveDependencies(type);
+
+		public T CreateInstance<T>() => (T)this.CreateInstanceAndResolveDependencies(typeof(T));
+
 		private bool IsTypeHasExportAttribute(Type type)
 		{
 			return type.GetCustomAttribute(typeof(ExportAttribute)) != null;
@@ -68,10 +72,6 @@ namespace DIContainer
 				this.AddType(type);
 			}
 		}
-
-		public object CreateInstance(Type type) => this.CreateInstanceAndResolveDependencies(type);
-
-		public T CreateInstance<T>() => (T)this.CreateInstanceAndResolveDependencies(typeof(T));
 
 		private object CreateInstanceAndResolveDependencies(Type type)
 		{
