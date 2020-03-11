@@ -12,13 +12,6 @@ namespace DIContainer.Models
 
 		[Import]
 		public Logger2 Logger2 { get; set; }
-
-		public CustomerBLL(Logger logger, Logger2 logger2, ICustomerDAL customerDAL)
-		{
-			this.Logger = logger;
-			this.Logger2 = logger2;
-			this.CustomerDAL = customerDAL;
-		}
 	}
 
 	[ImportConstructor]

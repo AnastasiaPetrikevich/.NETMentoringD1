@@ -67,7 +67,6 @@ namespace DIContainer
 			{
 				this.AddType(type);
 			}
-			
 		}
 
 		public object CreateInstance(Type type) => this.CreateInstanceAndResolveDependencies(type);
@@ -82,9 +81,17 @@ namespace DIContainer
 			}
 
 			var instanceType = types[type];
-			ConstructorInfo constructor = GetConstructor(instanceType);
+			var constructor = GetConstructor(instanceType);
+			var instance = ResolveDependencies(instanceType, constructor);
 
-			return ResolveDependencies(instanceType, constructor);
+			if (type.GetCustomAttribute<ImportConstructorAttribute>() != null)
+			{
+				return instance;
+			}
+
+			ResolveProperties(type, instance);
+
+			return instance;
 		}
 
 		private ConstructorInfo GetConstructor(Type type)
@@ -98,6 +105,15 @@ namespace DIContainer
 
 			return constructors.First();
 		}
+		private void ResolveProperties(Type type, object instance)
+		{
+			var propertiesToResolve = type.GetProperties().Where(x => x.GetCustomAttribute<ImportAttribute>() != null);
+
+			foreach (var property in propertiesToResolve)
+			{
+				property.SetValue(instance, CreateInstanceAndResolveDependencies(property.PropertyType));
+			}
+		}
 
 		private object ResolveDependencies(Type type, ConstructorInfo constructor)
 		{
@@ -109,7 +125,7 @@ namespace DIContainer
 			{
 				constructorParametersInstances.Add(CreateInstanceAndResolveDependencies(parameter.ParameterType));
 			}
-
+			
 			return Activator.CreateInstance(type, constructorParametersInstances.ToArray());
 		}
 	}
