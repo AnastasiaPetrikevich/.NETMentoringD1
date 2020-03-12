@@ -35,10 +35,10 @@ DECLARE
 SELECT OrderID AS 'Order Number',
 	CASE
 		WHEN ShippedDate IS NULL
-		THEN 'Not Shipped' 
+		THEN 'Not Shipped' 	
 		ELSE CONVERT (VARCHAR(30), ShippedDate)
 		END  
 	AS 'Shipped Date'
 FROM Orders
-WHERE ShippedDate > @date
+WHERE ShippedDate >= @date
 OR ShippedDate IS NULL;

@@ -46,7 +46,7 @@ namespace DIContainer.UI
 		{
 			var customerBLL = (CustomerBLL)container.CreateInstance(typeof(CustomerBLL));
 			Console.WriteLine($"{customerBLL.CustomerDAL.CustomerMessage} | {customerBLL.Logger.LoggerMessage} | {customerBLL.Logger2.LoggerMessage}");
-			
+
 			var customerBLL2 = (CustomerBLL2)container.CreateInstance(typeof(CustomerBLL2));
 			Console.WriteLine($"{customerBLL2.CustomerDAL.CustomerMessage} | {customerBLL2.Logger.LoggerMessage} | {customerBLL2.Logger2.LoggerMessage}");
 		}

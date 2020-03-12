@@ -22,7 +22,7 @@ namespace StringParser.Test
 		[TestCase("+2568")]
 		[TestCase("2147483647")]
 		[TestCase("-2147483648")]
-		public void ParseStringToInt_ValidInput_SuccessfulParsing(string inputString)
+		public void ParseStringToInt_ValidStrings_SuccessfulParsing(string inputString)
 		{
 			result = stringToIntParser.ParseStringToInt(inputString);
 			Assert.AreEqual(int.Parse(inputString), result);
@@ -42,7 +42,7 @@ namespace StringParser.Test
 		[TestCase("-{2334454]")]
 		[TestCase("-2356lt")]
 		[TestCase("7854.22")]
-		public void ParseStringToInt_NotValidInput_ThrowFormatException(string inputString)
+		public void ParseStringToInt_InvalidStrings_ThrowFormatException(string inputString)
 		{
 			Assert.Throws<FormatException>(() => result = stringToIntParser.ParseStringToInt(inputString));
 		}

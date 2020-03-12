@@ -110,7 +110,7 @@
     <None Include="Task 1\Task1.4.sql" />
     <None Include="Task 2\Task2.1.sql" />
     <None Include="Task 2\Task2.2.sql" />
-    <None Include="Task 2\Task2.3.sql" />
     <None Include="Task 2\Task2.4.sql" />
+    <None Include="Task 2\Task2.3.sql" />
   </ItemGroup>
 </Project>
