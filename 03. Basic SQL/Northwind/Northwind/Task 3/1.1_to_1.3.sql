@@ -1,6 +1,9 @@
-﻿IF EXISTS (SELECT * FROM SYS.TABLES SystemTables WHERE SystemTables.[Name] = 'Region')
+﻿IF EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SystemTables 
+	WHERE SystemTables.[Name] = 'Region')
 BEGIN
-    EXEC SP_RENAME '[dbo].[Region]', 'Regions';
+    EXEC SP_RENAME 'Region', 'Regions';
 END
 
 IF NOT EXISTS (SELECT * 

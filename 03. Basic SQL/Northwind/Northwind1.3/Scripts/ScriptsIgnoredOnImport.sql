@@ -15180,3 +15180,111 @@ EXECUTE (N'CREATE DATABASE Northwind
 
 
 GO
+
+IF EXISTS (SELECT * FROM SYS.TABLES SystemTables WHERE SystemTables.[Name] = 'Region')
+BEGIN
+    EXEC SP_RENAME '[dbo].[Region]', 'Regions';
+END
+GO
+
+IF NOT EXISTS (SELECT * 
+				FROM SYS.COLUMNS SystemColumns 
+                WHERE SystemColumns.[OBJECT_ID] = OBJECT_ID(N'[dbo].[Customers]') 
+				AND Name = 'FoundationDate')
+BEGIN
+    ALTER TABLE [dbo].[Customers]
+    ADD [FoundationDate] DATETIME
+END
+GO
+
+IF EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SystemTables 
+	WHERE SystemTables.[Name] = 'Region')
+BEGIN
+    EXEC SP_RENAME '[dbo].[Region]', 'Regions';
+END
+GO
+
+IF NOT EXISTS (SELECT * 
+				FROM SYS.COLUMNS SystemColumns 
+                WHERE SystemColumns.[OBJECT_ID] = OBJECT_ID(N'[dbo].[Customers]') 
+				AND Name = 'FoundationDate')
+BEGIN
+    ALTER TABLE [dbo].[Customers]
+    ADD [FoundationDate] DATETIME
+END
+GO
+
+IF EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SystemTables 
+	WHERE SystemTables.[Name] = 'Region')
+BEGIN
+    EXEC SP_RENAME '[dbo].[Region]', 'Regions';
+END
+GO
+
+IF NOT EXISTS (SELECT * 
+				FROM SYS.COLUMNS SystemColumns 
+                WHERE SystemColumns.[OBJECT_ID] = OBJECT_ID(N'[dbo].[Customers]') 
+				AND Name = 'FoundationDate')
+BEGIN
+    ALTER TABLE [dbo].[Customers]
+    ADD [FoundationDate] DATETIME
+END
+GO
+
+IF NOT EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SysTables 
+	WHERE SysTables.[Name] = 'CreditCards')
+BEGIN
+    --The following statement was imported into the database project as a schema object and named dbo.CreditCards.
+--CREATE TABLE [dbo].[CreditCards](
+--        [CreditCardId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+--        [ExpirationDate] DATETIME DEFAULT(NULL),
+--        [CardHolderName] VARCHAR(200) NOT NULL,
+--        [EmployeeId] INT REFERENCES [dbo].[Employees]([EmployeeID])
+--        );
+
+END
+GO
+
+IF EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SystemTables 
+	WHERE SystemTables.[Name] = 'Region')
+BEGIN
+    EXEC SP_RENAME '[dbo].[Region]', 'Regions';
+END
+GO
+
+IF NOT EXISTS (SELECT * 
+				FROM SYS.COLUMNS SystemColumns 
+                WHERE SystemColumns.[OBJECT_ID] = OBJECT_ID(N'[dbo].[Customers]') 
+				AND Name = 'FoundationDate')
+BEGIN
+    ALTER TABLE [dbo].[Customers]
+    ADD [FoundationDate] DATETIME
+END
+GO
+
+IF EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SystemTables 
+	WHERE SystemTables.[Name] = 'Region')
+BEGIN
+    EXEC SP_RENAME '[dbo].[Region]', 'Regions';
+END
+GO
+
+IF NOT EXISTS (SELECT * 
+				FROM SYS.COLUMNS SystemColumns 
+                WHERE SystemColumns.[OBJECT_ID] = OBJECT_ID(N'[dbo].[Customers]') 
+				AND Name = 'FoundationDate')
+BEGIN
+    ALTER TABLE [dbo].[Customers]
+    ADD [FoundationDate] DATETIME
+END
+GO

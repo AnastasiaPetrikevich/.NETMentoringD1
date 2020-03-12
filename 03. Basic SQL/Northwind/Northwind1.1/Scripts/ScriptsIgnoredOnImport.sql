@@ -15180,3 +15180,19 @@ EXECUTE (N'CREATE DATABASE Northwind
 
 
 GO
+
+IF NOT EXISTS (
+	SELECT * 
+	FROM SYS.TABLES AS SysTables 
+	WHERE SysTables.[Name] = 'CreditCards')
+BEGIN
+    --The following statement was imported into the database project as a schema object and named dbo.CreditCards.
+--CREATE TABLE [dbo].[CreditCards](
+--        [CreditCardId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+--        [ExpirationDate] DATETIME DEFAULT(NULL),
+--        [CardHolderName] VARCHAR(200) NOT NULL,
+--        [EmployeeId] INT REFERENCES [dbo].[Employees]([EmployeeID])
+--        );
+
+END
+GO
