@@ -47,30 +47,33 @@ GROUP BY EmployeeID, CustomerID;
 --Найти покупателей и продавцов, которые живут в одном городе. Если в городе живут только один или несколько продавцов,
 --или только один или несколько покупателей, то информация о таких покупателя и продавцах не должна попадать в результирующий набор.
 --Не использовать конструкцию JOIN.
-SELECT  City, 	
-    Customers = STUFF(
-                (SELECT ', ' + ContactName
-				FROM Customers AS c
-				WHERE c.City = e2.City	
-				FOR XML PATH ('')), 1, 1, ''), 
+SELECT C2.City, 
+	Customers = STUFF(
+		(SELECT ', ' + C1.ContactName
+		FROM Customers AS C1 
+		WHERE C2.City = C1.City 
+		FOR XML PATH('')), 1, 1, ''), 
 	Employees = STUFF(
-				(SELECT ', ' + FirstName + ' ' + LastName 
-				FROM Employees AS e1 
-				WHERE e1.City = e2.City
-				FOR XML PATH ('')), 1, 1, '')
-FROM Employees AS e2
-GROUP BY City
+		(SELECT ', ' + E1.FirstName + ' ' + E1.LastName 
+		FROM Employees AS E1 
+		WHERE E1.City = C2.City 
+		FOR XML PATH('')), 1, 1, '') 
+FROM 
+	Customers AS C2, 
+	Employees AS E2 
+WHERE C2.City = E2.City 
+GROUP BY C2.City;
 
 --5--
 --Найти всех покупателей, которые живут в одном городе.
 SELECT  City, 	
     Customers = STUFF(
                 (SELECT ', ' + ContactName 
-				FROM Customers AS c1
-				WHERE c1.City = c2.City
+				FROM Customers AS C1
+				WHERE C1.City = C2.City
 				FOR XML PATH ('')), 1, 1, '') 
-FROM Customers AS c2
-GROUP BY City
+FROM Customers AS C2
+GROUP BY City;
 
 --6--
 --По таблице Employees найти для каждого продавца его руководителя.
