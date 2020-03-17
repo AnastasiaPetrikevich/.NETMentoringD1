@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="31c7d916-2cc3-4e53-adce-97479e9af591" ChangeDateTime="03/16/2020 11:37:17">
+    <Property Name="ElementName" Value="[dbo].[CreditCards].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CreditCards]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreditCardsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3b297560-7693-4667-a9ef-59978427ff79" ChangeDateTime="03/16/2020 11:47:45">
+    <Property Name="ElementName" Value="[dbo].[CreditCards].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CreditCards]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreditCardsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e2b78de4-0e31-4547-8be6-fcaf6557f818" ChangeDateTime="03/16/2020 12:09:08">
+    <Property Name="ElementName" Value="[dbo].[Region]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Regions]" />
+  </Operation>
+</Operations>

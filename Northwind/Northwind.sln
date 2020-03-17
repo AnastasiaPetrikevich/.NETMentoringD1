@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Northwind", "Northwind\Northwind.sqlproj", "{C9F8EC2F-B975-4847-97C1-806E5606CEBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9F8EC2F-B975-4847-97C1-806E5606CEBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F8EC2F-B975-4847-97C1-806E5606CEBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F8EC2F-B975-4847-97C1-806E5606CEBD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C9F8EC2F-B975-4847-97C1-806E5606CEBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F8EC2F-B975-4847-97C1-806E5606CEBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F8EC2F-B975-4847-97C1-806E5606CEBD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FDB0AEB-3370-489F-8AC6-C8557F567024}
+	EndGlobalSection
+EndGlobal
