@@ -24,6 +24,9 @@ namespace SampleQueries
 	{
 
 		private DataSource dataSource = new DataSource();
+        private List<Product> Products => dataSource.Products; //можно вынести--чуть проще писать/читать)
+        private List<Customer> Customers => dataSource.Customers;
+        private List<Supplier> Suppliers => dataSource.Suppliers;
 
         [Category("Restriction Operators")]
         [Title("Where - Task 1")]
@@ -133,7 +136,7 @@ namespace SampleQueries
                 .Select(c => new
                 {
                     CustomerId = c.CustomerID,
-                    OrderDate = c.Orders.Select(o => o.OrderDate).First()
+                    OrderDate = c.Orders.Min(o => o.OrderDate) //можно так
                 });
 
             ObjectDumper.Write($"List of customers with first order date:");
@@ -177,9 +180,20 @@ namespace SampleQueries
         public void Linq006()
         {
             var list = dataSource.Customers
-                .Where(c => !int.TryParse(c.PostalCode, out var res)
+                .Where(c => !int.TryParse(c.PostalCode, out var res) //у тебя тут значение со знаком + или - для TryParse даст true. 
+                                                                    //Хотя кейс притянут за уши, но всё же.
+                                                                    //Если такое требование всё же есть, то char.IsDigit можно использовать 
                           || string.IsNullOrWhiteSpace(c.Region)
-                          || !c.Phone.StartsWith("(", StringComparison.Ordinal));
+                          || !c.Phone.StartsWith("(", StringComparison.Ordinal)); //как бы и норм, но я бы регулярку использовал или хотя бы проверку на наличие и второй скобки.
+                                                                                  //если мы точно знаем, что у нас или () или ничего, то норм
+                                                                                  //но если "битые данные в базе, надо их найти"
+                                                                                  //и там могут быть данные с одной скобкой, то лучше более сильное ограничение ввести
+                                                                                  //но опять же. чисто по ситуации надо смотреть. в 99% случаев и проверки на "(" будет достаточно
+
+            //вот тебе кстати реальный прикольчик. сейчас как раз тестим функционал поиска по документам.
+            //и у нас он ломается, если вбить в поисковую строку "http" или "https"
+            //любые другие наборы символов и протоколы(ftp/smtp) норм. а на эти строки ругается)
+
 
             ObjectDumper.Write($"list of customers with nondigital postal code, empty region or without code operator:");
             foreach (var customer in list)
@@ -230,7 +244,9 @@ namespace SampleQueries
         public void Linq008()
         {
             int cheapPrice = 30, expensivePrice = 50;
-
+            //я тут создавал наследника от IEqualityComparer с методом, который принимает цену, а возвращает "cheap", "average",..
+            //var productGroups = Products.GroupBy(p => comparer.GetGroupName(p.UnitPrice), comparer);
+            //просто как альтернатива
             var list = dataSource.Products
                 .GroupBy(p => p.UnitPrice < cheapPrice ? "cheap" 
                     : p.UnitPrice < expensivePrice ? "average" : "expensive");
