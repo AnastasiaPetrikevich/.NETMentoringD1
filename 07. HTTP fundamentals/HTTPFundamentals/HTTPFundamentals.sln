@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGETAnalog.Logic", "WGETAnalog.Logic\WGETAnalog.Logic.csproj", "{F2406753-6735-44BA-8003-B99C89D96438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGETAnalog.ConsoleApp", "WGETAnalog.ConsoleApp\WGETAnalog.ConsoleApp.csproj", "{35CD7F36-CB12-4419-B965-D96339F1EB2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2406753-6735-44BA-8003-B99C89D96438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2406753-6735-44BA-8003-B99C89D96438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2406753-6735-44BA-8003-B99C89D96438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2406753-6735-44BA-8003-B99C89D96438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CD7F36-CB12-4419-B965-D96339F1EB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CD7F36-CB12-4419-B965-D96339F1EB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CD7F36-CB12-4419-B965-D96339F1EB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CD7F36-CB12-4419-B965-D96339F1EB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
