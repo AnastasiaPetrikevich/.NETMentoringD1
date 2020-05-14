@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookSerializer.Logic", "BookSerializer.Logic\BookSerializer.Logic.csproj", "{903C6EEA-349B-40D5-B9AB-C61D64FABCBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookSerializer.UI", "BookSerializer.UI\BookSerializer.UI.csproj", "{BC33F97D-EC5C-448D-889D-BE7636ED10F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{903C6EEA-349B-40D5-B9AB-C61D64FABCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903C6EEA-349B-40D5-B9AB-C61D64FABCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903C6EEA-349B-40D5-B9AB-C61D64FABCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903C6EEA-349B-40D5-B9AB-C61D64FABCBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC33F97D-EC5C-448D-889D-BE7636ED10F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC33F97D-EC5C-448D-889D-BE7636ED10F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC33F97D-EC5C-448D-889D-BE7636ED10F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC33F97D-EC5C-448D-889D-BE7636ED10F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {739597B6-BE61-45E5-BD2C-9B404FF48D6E}
+	EndGlobalSection
+EndGlobal
