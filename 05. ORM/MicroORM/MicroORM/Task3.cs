@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LinqToDB.Data;
 
 namespace MicroORM
 {
@@ -66,28 +67,7 @@ namespace MicroORM
 										   }
 								   };
 
-				foreach (var p in products)
-				{
-					if (connection.Categories.Any(c => c.Name.Equals(p.Category.Name)))
-					{
-						p.CategoryId = connection.Categories.First(c => c.Name.Equals(p.Category.Name)).Id;
-					}
-					else
-					{
-						p.CategoryId = (int)(decimal)connection.InsertWithIdentity(new Category() { Name = p.Category.Name });
-					}
-
-					if (connection.Suppliers.Any(s => s.CompanyName.Equals(p.Supplier.CompanyName)))
-					{
-						p.SupplierId = connection.Suppliers.First(s => s.CompanyName.Equals(p.Supplier.CompanyName)).Id;
-					}
-					else
-					{
-						p.SupplierId = (int)(decimal)connection.InsertWithIdentity(new Supplier() { CompanyName = p.Supplier.CompanyName });
-					}
-
-					connection.Insert(p);
-				}
+				connection.BulkCopy(new BulkCopyOptions { BulkCopyType = BulkCopyType.ProviderSpecific },products);
 			}
 		}
 

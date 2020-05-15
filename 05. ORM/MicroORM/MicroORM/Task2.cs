@@ -71,11 +71,11 @@ namespace MicroORM
                     .Distinct()
                     .GroupBy(o => o.Employee))
                 {
-                    Console.WriteLine("Employee: {0}", order.Key);
+                    Console.WriteLine($"Employee: {order.Key}");
                     Console.WriteLine("Shippers:");
                     foreach (var employee in order)
                     {
-                        Console.WriteLine("{0}", employee.Shipper);
+                        Console.WriteLine($"{employee.Shipper}");
                     }
                 }
             }
