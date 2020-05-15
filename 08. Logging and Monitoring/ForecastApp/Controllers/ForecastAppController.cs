@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ForecastApp.ForecastAppModels;
 using ForecastApp.Logger;
@@ -26,7 +27,7 @@ namespace ForecastApp.Controllers
 		public IActionResult SearchCity()
         {
             var viewModel = new SearchCity();
-			_logger.Info("ForecastAppController GET: ForecastApp/SearchCity. City ​​found.");
+			_logger.Info($"ForecastAppController GET: ForecastApp/SearchCity. City {viewModel.CityName} ​​found.");
             return View(viewModel);
         }
 
@@ -63,7 +64,12 @@ namespace ForecastApp.Controllers
                 viewModel.Wind = weatherResponse.Wind.Speed;
             }
 
-			_logger.Info("ForecastAppController GET: ForecastApp/City. Forecast data ​​found.");
+			var message = new StringBuilder();
+			message.AppendLine($"ForecastAppController GET: ForecastApp/City. Forecast data ​​found for {viewModel.Name}.");
+			message.Append($"Humidity: {viewModel.Humidity}, Pressure: {viewModel.Pressure}, Weather: {viewModel.Weather}, Wind:{viewModel.Wind}");
+
+			_logger.Info(message.ToString());
+			
 			return View(viewModel);
         }
     }
