@@ -16,6 +16,8 @@ namespace BookSerializer.Logic
 			var serializer = new XmlSerializer(typeof(Catalog));
 			using (FileStream stream = new FileStream(filePath, FileMode.Create))
 			{
+				XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+				ns.Add(string.Empty, "http://library.by/catalog");
 				serializer.Serialize(stream, element);
 			}
 		}
